@@ -1,0 +1,95 @@
+<!DOCTYPE >
+<html>
+ 
+    <head>
+      <meta charset="UTF-8" />
+      <title>title</title>
+        <style>
+            IMG {
+                width:15%;
+                height:auto;
+              }
+              
+              button {
+                background: #0084ff;
+                border: none;
+                border-radius: 5px;
+                padding: 8px 14px;
+                font-size: 15px;
+                color: #fff;
+              }
+              
+              
+        </style>
+        
+    </head>
+    <body>
+
+        <div id="test1">
+            <div>      
+              <img src="https://www.arpm.co/job/test/img/1.png" id="img_1">
+              <img src="https://www.arpm.co/job/test/img/2.png" id="img_2">
+              <img src="https://www.arpm.co/job/test/img/3.png" id="img_3">
+              <img src="https://www.arpm.co/job/test/img/4.png" id="img_4">
+            </div>
+            <button id="btntest1">Go</button>
+          </div>
+          <div id="test2">
+            <div>      
+              <img src="https://www.arpm.co/job/test/img/5.png" id="img_5">
+            </div>
+            <button id="btntest2">Go</button>
+          </div>
+          <div id="test3">
+            <div id="result3"></div>
+            <button id="btntest3">Go</button>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script>
+            $('#btntest1').on('click', function(){
+              $('#img_2').after('<img src="https://www.arpm.co/job/test/img/6.png">');
+
+                // 1. Insert a new image between the second and the third one.
+              // The new image is: https://www.arpm.co/job/test/img/6.png
+             
+            });
+            $('#btntest2').on('click', function(){
+              var purple = $('#img_3').position();
+            var purpleWidth = $('#img_3').outerWidth(); 
+            var yellowwidth=$('#img_5').outerWidth(); 
+            
+              $('#test1').append($('#img_5'));
+              $('#img_5').css({
+                position: 'absolute',
+                top: ($('#img_3').position().top +  $('#img_5').outerHeight()  + 'px'),
+                left: $('#img_3').offset().left + 'px'});
+             
+                // 2. Position the yellow circle of the second line exactly below the purple circle of the first line 
+              // in order that the top border of the yellow circle is tangent the the bottom border of the purple one
+            });
+            $('#btntest3').on('click', function(){
+              var img=$('#img_5').attr('src');
+              var data = {
+               html:img}
+               $.ajax({
+                url: '/echo/html/',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    
+                    $('#result3').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                   
+                }
+            });
+                // 3. Make a post ajax call to this url: /echo/html/
+              //		- send 1 param with key 'html' and as value the value of the source attribute of the yellow image
+              //		- print the result inside the DIV with id "result3"
+            
+            });
+            
+          </script>
+    </body>
+</html>

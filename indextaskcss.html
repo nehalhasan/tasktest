@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style>
+        .grid{
+           margin-left: auto; 
+           margin-right: auto;
+           width: 100%;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+           
+        }
+        .cell.full-start_full-end{
+            width: 99%;
+           padding: 7px;
+           flex: 0 0 auto;
+            position: relative;
+            height: 300px;
+          
+        }
+   
+        .cell{
+            flex: 0 0 auto;
+            width: 32.333333%;
+            position: relative;
+            height: 300px;
+            padding: 7px;
+        }
+        .cell.full-start_second-end{
+            flex: 0 0 auto;
+            width:65.666667%;
+          
+            position: relative;
+            height: 300px;
+           padding: 7px;
+        }
+        .col4-background{
+            background-color: black;
+            height: 300px;
+            color: #ffff;
+        }
+        .colbackground::before {
+            z-index: 1000;
+            background: white;
+            position: absolute;
+            width: 9%;
+            height: 39%;
+            content: '';
+            border-radius: 69%;
+            margin-top: 17%;
+            margin-left: 5%;
+        }
+        .colbackground{
+            background-color: gray;
+            height: 300px;
+        }
+        .col-8background{
+            background-color: gray;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="row">
+        <div class="cell full-start_full-end"><div class="colbackground">Div1</div></div>
+        <div class="cell"><div class="col4-background">Div2</div></div>
+        <div class="cell"><div class="col4-background">Div3</div></div>
+        <div class="cell "><div class="col4-background">Div4</div></div>
+        <div class="cell full-start_second-end "><div class="col-8background">Div5</div></div>
+        <div class="cell "><div class="col4-background">div6</div></div>
+    </div>
+    </div>
+</body>
+</html>
